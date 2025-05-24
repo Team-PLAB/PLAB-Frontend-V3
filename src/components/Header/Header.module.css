@@ -149,6 +149,7 @@
 
   .menuButton {
     display: block;
+    margin: unset;
   }
 
   .navBar {
