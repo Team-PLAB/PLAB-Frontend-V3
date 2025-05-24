@@ -10,5 +10,18 @@ import {
 	ScheduleForm,
 	UserInfoForm,
 } from './components/RentalForm'
+import AuthForm from './pages/Auth/components/AuthForm'
 
-export { Landing, SignUp, SignIn, Profile, Header, Rental, Management, PurposeForm, ScheduleForm, UserInfoForm }
+export {
+	Landing,
+	SignUp,
+	SignIn,
+	Profile,
+	Header,
+	Rental,
+	Management,
+	PurposeForm,
+	ScheduleForm,
+	UserInfoForm,
+	AuthForm,
+}

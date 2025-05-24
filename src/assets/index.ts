@@ -1,5 +1,6 @@
 import GBSM_Symbol from "./img/gbsm-symbol.png";
 import GBSWFULLSCREEN from "./img/gbsm-full-symbol.png";
+import GBSMFULLSCREEN from "./img/gbsm-full-symbol-green.png";
 import GBSMLOGO from "./img/gbsm-symbol-new-solid.png";
 import SchoolFullImg from "./img/SchoolFull.png";
 import Error from "./img/error.png";
@@ -19,6 +20,7 @@ import Check from "./img/check.png"
 export {
   GBSM_Symbol,
   GBSWFULLSCREEN,
+  GBSMFULLSCREEN,
   GBSMLOGO,
   SchoolFullImg,
   Error,
