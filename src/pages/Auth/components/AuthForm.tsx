@@ -11,6 +11,7 @@ interface AuthFormProps {
 	value: string
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 	error?: string
+	isPending?: string
 	onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
 }
 
@@ -20,6 +21,7 @@ const AuthForm = ({
 	value,
 	onChange,
 	error,
+	isPending,
 	onKeyDown,
 }: AuthFormProps) => {
 	const [showPassword, setShowPassword] = useState(false)
@@ -53,9 +55,12 @@ const AuthForm = ({
 					</button>
 				)}
 			</div>
-			{error && (
-				<div className={styles.error}>
-					<p>{error}</p>
+			{(error || isPending) && (
+				<div
+					className={`${styles.error} ${isPending ? styles.loading : ''}`}
+					id={`${placeholder}-error`}
+				>
+					{isPending ? isPending : error}
 				</div>
 			)}
 		</div>
