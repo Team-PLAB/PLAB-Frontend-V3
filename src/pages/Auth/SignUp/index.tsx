@@ -8,6 +8,7 @@ import { useAuth } from '~/hooks'
 import type { signUpType } from '~/types'
 import { validateSignUp, handleKeyDown } from '~/utils'
 import { GBSMFULLSCREEN } from '~/assets'
+import { errorOption } from '~/consts'
 
 const SignUp = () => {
 	const [signupData, setSignupData] = useState<signUpType>({
@@ -38,7 +39,12 @@ const SignUp = () => {
 				navigate('/signin')
 			},
 			onError: error => {
-				console.error('Sign-up error:', error)
+				if(error.message === errorOption[409]) {
+					setErrors({
+						username: '',
+						password: '이미 있는 아이디입니다.',
+					})
+				}
 			},
 		})
 	}
@@ -72,6 +78,7 @@ const SignUp = () => {
 						value={signupData.password}
 						onChange={e => handleChange('password', e.target.value)}
 						error={errors.password}
+						isPending={isPending ? '회원가입 중..' : ''}
 						onKeyDown={e => handleKeyDown(e, handleSubmit)}
 					/>
 					<button
@@ -79,7 +86,7 @@ const SignUp = () => {
 						disabled={isPending}
 						className={styles.submitButton}
 					>
-						{isPending ? '회원가입중...' : '회원가입'}
+						{isPending ? '회원가입 중..' : '회원가입'}
 					</button>
 					<Link to="/signin" className={styles.toSignIn}>
 						로그인
