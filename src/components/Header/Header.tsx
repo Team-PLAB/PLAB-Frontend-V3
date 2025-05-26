@@ -90,11 +90,8 @@ const Header = () => {
                                 <div className={styles.title}>PLAB</div>
                                 <div>
                                     <span>ADMIN</span>
-<<<<<<< HEAD
                                     <span className={styles.logoutButton2} style={{ margin: '0 4px' }}>|</span>
                                     <span className={styles.logoutButton} onClick={handleLogout}>로그아웃</span>
-=======
->>>>>>> origin/develop
                                 </div>
                             </div>
                             {/* sidebar */}
@@ -137,11 +134,8 @@ const Header = () => {
                                 <div className={styles.title}>PLAB</div>
                                 <div>
                                     {userStatus?.username}
-<<<<<<< HEAD
                                     <span className={styles.logoutButton2} style={{ margin: '0 4px' }}>|</span>
                                     <span className={styles.logoutButton} onClick={handleLogout}>로그아웃</span>
-=======
->>>>>>> origin/develop
                                 </div>
                             </div>
                             {/* sidebar */}
