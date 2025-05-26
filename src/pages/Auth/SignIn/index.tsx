@@ -1,13 +1,13 @@
 import * as componets from '~/allFiles'
 import styles from './style.module.css'
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useAuth } from '~/hooks'
 import type { signInType } from '~/types'
 import { setCookie, validateSignIn, handleKeyDown } from '~/utils'
 import { GBSMFULLSCREEN } from '~/assets'
+import { errorOption } from '~/consts'
 
 const SignIn = () => {
 	const [signInData, setSignInData] = useState<signInType>({
@@ -40,7 +40,12 @@ const SignIn = () => {
 				navigate('/')
 			},
 			onError: error => {
-				console.log(error)
+				if(error.message === errorOption[400] || error.message === errorOption[401]) {
+					setErrors({
+						login: '',
+						password: '아이디 또는 비밀번호가 잘못되었습니다.',
+					})
+				}
 			},
 		})
 	}
@@ -74,6 +79,7 @@ const SignIn = () => {
 						value={signInData.password}
 						onChange={e => handleChange('password', e.target.value)}
 						error={errors.password}
+						isPending={isPending ? '로그인 중..' : ''}
 						onKeyDown={e => handleKeyDown(e, handleSubmit)}
 					/>
 					<button
@@ -81,7 +87,7 @@ const SignIn = () => {
 						disabled={isPending}
 						className={styles.submitButton}
 					>
-						{isPending ? '로그인중...' : '로그인'}
+						{isPending ? '로그인 중..' : '로그인'}
 					</button>
 					<Link to={'/signup'} className={styles.toSignUp}>
 						회원가입

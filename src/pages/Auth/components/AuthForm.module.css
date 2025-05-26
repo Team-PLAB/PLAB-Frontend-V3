@@ -44,3 +44,12 @@
   color: #ef4444;
   min-height: 14px;
 }
+
+.loading {
+    display: flex;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 14px;
+  color: var(--primary);
+  min-height: 14px;
+}
