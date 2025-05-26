@@ -1,11 +1,11 @@
 import styles from "./Header.module.css";
 
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { IoMenu, IoChevronForwardOutline } from "react-icons/io5";
 import { useAuth, useCheckToken } from '~/hooks'
 import { getCookie } from '~/utils'
-import { Link } from "react-router-dom";
 import { GBSMLOGO } from '~/assets'
-import { IoMenu, IoChevronForwardOutline } from "react-icons/io5";
 
 const Header = () => {
     const token = getCookie('accessToken')
@@ -69,7 +69,6 @@ const Header = () => {
             },
         })
     }
-
 
     return (
         <>

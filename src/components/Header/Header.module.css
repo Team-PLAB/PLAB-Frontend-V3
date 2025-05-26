@@ -85,6 +85,11 @@
   opacity: 0.7;
 }
 
+.logoutButton {
+  cursor: pointer;
+}
+
+
 .sidebar {
   position: fixed;
   top: 0;
