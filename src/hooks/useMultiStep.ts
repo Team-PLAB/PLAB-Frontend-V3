@@ -1,7 +1,7 @@
 import { useState, type ReactElement } from 'react';
 
 type StepProp = {
-  title: string;
+  title: string | ReactElement;
   element: ReactElement;
   img?: string;
 };

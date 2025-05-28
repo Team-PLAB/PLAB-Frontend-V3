@@ -10,6 +10,7 @@
   --primary_hover: #029678;
   --red: #FF0000;
   --green: #4BAF50;
+  --gray_lighter: #DBDBDB;
   --gray_light: #D7D7D7;
   --gray_medium: #7D7D7D;
   --black: #000000;
@@ -32,4 +33,57 @@ body {
 
 a {
   text-decoration: none;
+}
+
+input{
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid var(--gray_lighter);
+  font-size: 20px;
+  outline: none;
+  padding: 0 20px 10px 0;
+  transition: border-bottom 0.1s ease-in;
+  position: relative;
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary);
+  }
+
+  &::-webkit-calendar-picker-indicator {
+      position: absolute;
+      right: 0;
+      cursor: pointer;
+      filter: invert(48%) sepia(13%) saturate(3207%) hue-rotate(130deg) brightness(95%) contrast(80%);
+      padding: 0;
+      margin: 0;
+      background-size: contain;
+  }
+
+  &::placeholder {
+    color: #C3C3C3;
+  }
+}
+
+textarea {
+  margin-top: 10px;
+  padding: 20px;
+  width: 100%;
+  height: 250px;
+  border: 2px solid var(--gray_lighter);
+  border-radius: 3px;
+  font-size: 20px;
+  transition: border 0.1s ease-in;
+  resize: none;
+
+  &:focus {
+    border: 2px solid var(--primary);
+    outline: none;
+  }
+}
+
+span {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--gray_medium);
 }

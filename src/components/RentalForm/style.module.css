@@ -1,0 +1,52 @@
+.mainContainer {
+  margin-top: 55px;
+}
+
+.purposeContainer {
+  margin-top: 35px;
+}
+
+.userInfoContainer {
+  margin-top: 30px;
+}
+
+.rentalFormInput {
+  margin-top: 25px;
+}
+
+.rentalSelect {
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid var(--gray_lighter);
+  font-size: 20px;
+  outline: none;
+  margin-top: 20px;
+  padding: 0 0 10px 0;
+  transition: border-bottom 0.1s ease-in;
+  position: relative;
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary);
+  }
+
+  &::-webkit-calendar-picker-indicator {
+      position: absolute;
+      right: 0;
+      cursor: pointer;
+      filter: invert(48%) sepia(13%) saturate(3207%) hue-rotate(130deg) brightness(95%) contrast(80%);
+      padding: 0;
+      margin: 0;
+      background-size: contain;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  span {
+    font-size: 1rem;
+  }
+
+  input {
+    font-size: 1rem;
+  }
+}

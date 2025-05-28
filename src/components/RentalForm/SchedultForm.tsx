@@ -1,3 +1,5 @@
+import styles from './style.module.css'
+
 import type { ChangeEvent } from "react"
 import { labOption, timeOption } from "~/consts"
 import type { rentalType } from "~/types"
@@ -15,18 +17,25 @@ type ScheduleFormProps = {
 
 			return (
 				<>
-					<input
-						type="date"
-						name="rentalDate"
-						value={rentalDate}
-						placeholder="대여 희망일"
-						onChange={handleChange}
-						required
-					/>
-					<select
+					<div className={styles.mainContainer}>
+						<span>대여 희망일</span>
+						<input
+							type="date"
+							name="rentalDate"
+							value={rentalDate}
+							placeholder="대여 희망일"
+							onChange={handleChange}
+							className={styles.rentalFormInput}
+							required
+						/>
+					</div>
+					<div className={styles.userInfoContainer}>
+						<span>사용 대여 시간</span>
+						<select
 						name="rentalStartTime"
 						value={rentalStartTime}
 						onChange={handleChange}
+						className={styles.rentalSelect}
 						required
 					>
 						<option value="" disabled>
@@ -38,10 +47,14 @@ type ScheduleFormProps = {
 							</option>
 						))}
 					</select>
-					<select
+					</div>
+					<div className={styles.userInfoContainer}>
+						<span>대여 희망 실습실</span>
+						<select
 						name="labName"
 						value={labName}
 						onChange={handleChange}
+						className={styles.rentalSelect}
 						required
 					>
 						<option value="" disabled>
@@ -53,6 +66,7 @@ type ScheduleFormProps = {
 							</option>
 						))}
 					</select>
+					</div>
 				</>
 			)
 		}
