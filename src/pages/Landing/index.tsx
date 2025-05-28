@@ -14,7 +14,7 @@ const Landing = () => {
 					<div className={styles.heroContent}>
 						<div className={styles.subtitle}>경북소프트웨어고등학교</div>
 						<div className={styles.title}>실습실 대여하기</div>
-						<Link to="/student/rental" className={styles.heroButton}>실습실 대여하기</Link>
+						<Link to="/rental" className={styles.heroButton}>실습실 대여하기</Link>
 					</div>
 				</div>
 

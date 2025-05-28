@@ -39,7 +39,6 @@ const AuthForm = ({
 					value={value}
 					onChange={onChange}
 					onKeyDown={onKeyDown}
-					className={styles.input}
 				/>
 				{type === 'password' && (
 					<button
