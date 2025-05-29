@@ -1,4 +1,4 @@
-import type { signInType, signUpType } from "~/types";
+import type { rentalType, signInType, signUpType } from "~/types";
 
 const validateSignUp = (values: signUpType) => {
   const errors: Partial<signUpType> = {
@@ -42,6 +42,41 @@ const validateSignIn = (values: signInType) => {
   return errors
 }
 
+const validateRental = (values: rentalType) => {
+	const errors: Partial<rentalType> = {
+		rentalDate: '',
+		rentalUser: '',
+		rentalUsers: '',
+		rentalPurpose: '',
+		rentalStartTime: '',
+		labName: '',	
+	}
 
+	if (!values.rentalDate.trim()) {
+		errors.rentalDate = '대여 희망일을 선택해주세요.'
+	}	
 
-export { validateSignUp, validateSignIn }
+	if (!values.rentalUser.trim()) {
+		errors.rentalUser = '대표자를 기재해주세요.'
+	}
+
+	if (!values.rentalUsers.trim()) {
+		errors.rentalUsers = '사용 인원을 전원 기재해주세요.'
+	}
+
+	if (!values.rentalPurpose.trim()) {
+		errors.rentalPurpose = '사용 목적을 입력해주세요.'
+	}
+
+	if (!values.rentalStartTime.trim()) {
+		errors.rentalStartTime = '대여 희망일을 선택해주세요.'
+	}
+
+	if (!values.labName.trim()) {
+		errors.labName = '대여 희망 실습실을 선택해주세요.'
+	}
+
+	return errors
+}
+
+export { validateSignUp, validateSignIn, validateRental }

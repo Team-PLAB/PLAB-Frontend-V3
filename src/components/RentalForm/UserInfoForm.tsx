@@ -5,12 +5,14 @@ import type { rentalType } from '~/types'
 
 type UserInfoFormProps = {
 	updateFields: (fields: Partial<rentalType>) => void
+	errorFields?: Partial<rentalType>
 } & Partial<rentalType>
 
 export const UserInfoForm = ({
-	rentalUser,
-	rentalUsers,
+	rentalUser = '',
+	rentalUsers = '',
 	updateFields,
+	errorFields = {},
 }: UserInfoFormProps) => {
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 		updateFields({ [e.target.name]: e.target.value })
@@ -26,7 +28,7 @@ export const UserInfoForm = ({
 					name="rentalUser"
 					value={rentalUser}
 					onChange={handleChange}
-					className={styles.rentalFormInput}
+					className={`${styles.rentalFormInput} ${errorFields.rentalUser ? styles.errorInput : ''}`}
 					required
 				/>
 			</div>
@@ -38,7 +40,7 @@ export const UserInfoForm = ({
 					value={rentalUsers}
 					placeholder="사용 인원 이름"
 					onChange={handleChange}
-					className={styles.rentalFormInput}
+					className={`${styles.rentalFormInput} ${errorFields.rentalUsers ? styles.errorInput : ''}`}
 					required
 				/>
 			</div>
