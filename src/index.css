@@ -87,3 +87,9 @@ span {
   font-weight: 400;
   color: var(--gray_medium);
 }
+
+@media (max-width: 767px) {
+  .Toastify__toast {
+    display: none;
+  }
+}

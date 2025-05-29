@@ -4,6 +4,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query"
+import { ToastContainer } from 'react-toastify'
 import './index.css'
 import App from './App.tsx'
 
@@ -13,6 +14,7 @@ createRoot(document.getElementById('root')!).render(
 	<QueryClientProvider client={queryClient}>
 		<CookiesProvider>
 			<App />
+			<ToastContainer />
 		</CookiesProvider>
 	</QueryClientProvider>
 )

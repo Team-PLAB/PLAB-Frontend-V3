@@ -11,6 +11,7 @@ import {
 	UserInfoForm,
 } from './components/RentalForm'
 import AuthForm from './pages/Auth/components/AuthForm'
+import { Toastify } from './components/Toastify'
 
 export {
 	Landing,
@@ -24,4 +25,5 @@ export {
 	ScheduleForm,
 	UserInfoForm,
 	AuthForm,
+	Toastify,
 }

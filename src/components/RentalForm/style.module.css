@@ -11,7 +11,7 @@
 }
 
 .rentalFormInput {
-  margin-top: 25px;
+  margin-top: 20px;
 }
 
 .rentalSelect {
@@ -39,6 +39,14 @@
       margin: 0;
       background-size: contain;
   }
+}
+
+.errorInput {
+  border-bottom: 2px solid var(--red);
+}
+
+.errorTextarea {
+  border: 2px solid var(--red);
 }
 
 @media screen and (max-width: 375px) {
