@@ -176,12 +176,12 @@ const Rental = () => {
 				{currentStep}
 				<div className={styles.buttonContainer}>
 					{!isFirstStep && (
-						<button onClick={prev} className={styles.prev}>
+						<button onClick={prev} className={styles.rentalButton} id={styles.prev}>
 							이전
 						</button>
 					)}
 					{!isLastStep && (
-						<button onClick={handleNext} className={styles.next}>
+						<button onClick={handleNext} className={styles.rentalButton} id={styles.next}>
 							다음
 						</button>
 					)}
@@ -189,7 +189,8 @@ const Rental = () => {
 						<button
 							onClick={handleSubmit}
 							disabled={requestLabRental.isPending}
-							className={styles.submit}
+							className={styles.rentalButton}
+							id={styles.submit}
 						>
 							{requestLabRental.isPending ? '제출 중..' : '제출'}
 						</button>
