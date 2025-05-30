@@ -10,6 +10,7 @@ import {
 	ScheduleForm,
 	UserInfoForm,
 } from './components/RentalForm'
+import RentalModal from './components/Modal/RentalModal'
 import AuthForm from './pages/Auth/components/AuthForm'
 import { Toastify } from './components/Toastify'
 
@@ -24,6 +25,7 @@ export {
 	PurposeForm,
 	ScheduleForm,
 	UserInfoForm,
+	RentalModal,
 	AuthForm,
 	Toastify,
 }
