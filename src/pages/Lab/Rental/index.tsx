@@ -2,10 +2,12 @@ import * as component from '~/allFiles'
 import styles from './style.module.css'
 
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useMultiStep, useLab } from '~/hooks'
 import type { rentalType } from '~/types'
 import { StepOne, StepTwo, StepThree } from '~/assets'
 import { validateRental } from '~/utils'
+import { errorOption } from '~/consts'
 
 const initialOption: rentalType = {
 	rentalDate: '',
@@ -20,6 +22,9 @@ const Rental = () => {
 	const { requestLabRental } = useLab()
 	const [formData, setFormData] = useState<rentalType>(initialOption)
 	const [errorFields, setErrorFields] = useState<Partial<rentalType>>({})
+	const [isModalOpen, setIsModalOpen] = useState(false)
+
+	const navigate = useNavigate()
 
 	const updateFields = (fields: Partial<rentalType>) => {
 		setFormData(prev => ({ ...prev, ...fields }))
@@ -145,7 +150,11 @@ const Rental = () => {
 		}
 
 		setErrorFields({})
-		requestLabRental.mutate(formData, {
+		setIsModalOpen(true)
+	}
+
+	const handleModalConfirm = async () => {
+		await requestLabRental.mutateAsync(formData, {
 			onSuccess: () => {
 				setFormData(initialOption)
 				component.Toastify({
@@ -154,11 +163,10 @@ const Rental = () => {
 				})
 			},
 			onError: error => {
-				component.Toastify({
-					type: 'error',
-					message: '제출에 실패했습니다.',
-				})
-				console.log(error)
+				if (error.message === errorOption[401]) {
+					alert('세션이 만료되었습니다. 다시 로그인 해주세요.')
+					navigate('/signin')
+				}
 			},
 		})
 	}
@@ -176,12 +184,20 @@ const Rental = () => {
 				{currentStep}
 				<div className={styles.buttonContainer}>
 					{!isFirstStep && (
-						<button onClick={prev} className={styles.rentalButton} id={styles.prev}>
+						<button
+							onClick={prev}
+							className={styles.rentalButton}
+							id={styles.prev}
+						>
 							이전
 						</button>
 					)}
 					{!isLastStep && (
-						<button onClick={handleNext} className={styles.rentalButton} id={styles.next}>
+						<button
+							onClick={handleNext}
+							className={styles.rentalButton}
+							id={styles.next}
+						>
 							다음
 						</button>
 					)}
@@ -197,6 +213,11 @@ const Rental = () => {
 					)}
 				</div>
 			</main>
+			<component.RentalModal
+				isOpen={isModalOpen}
+				onClose={() => setIsModalOpen(false)}
+				actionFunction={handleModalConfirm}
+			/>
 		</div>
 	)
 }

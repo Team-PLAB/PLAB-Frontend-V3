@@ -69,7 +69,7 @@ const validateRental = (values: rentalType) => {
 	}
 
 	if (!values.rentalStartTime.trim()) {
-		errors.rentalStartTime = '대여 희망일을 선택해주세요.'
+		errors.rentalStartTime = '사용 대여 시간을 선택해주세요.'
 	}
 
 	if (!values.labName.trim()) {
