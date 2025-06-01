@@ -5,6 +5,7 @@ import Header from './components/Header/Header'
 import Profile from './pages/Auth/Profile'
 import Rental from './pages/Lab/Rental'
 import Management from './pages/Lab/Management'
+import NotFound from './pages/Error/NotFound'
 import {
 	PurposeForm,
 	ScheduleForm,
@@ -22,6 +23,7 @@ export {
 	Header,
 	Rental,
 	Management,
+	NotFound,
 	PurposeForm,
 	ScheduleForm,
 	UserInfoForm,

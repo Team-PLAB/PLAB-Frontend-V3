@@ -12,6 +12,7 @@ function App() {
 				<Route path={'/profile'} element={<route.Profile />} />
 				<Route path={'/rental'} element={<route.Rental />} />
 				<Route path={'/management'} element={<route.Management />} />
+				<Route path={'*'} element={<route.NotFound />}/>
 			</Routes>
 		</Router>
 	)
