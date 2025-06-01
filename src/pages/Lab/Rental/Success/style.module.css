@@ -1,0 +1,46 @@
+.topContainer {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mainContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.success {
+  width: 200px;
+  height: 200px;
+}
+
+.successTitle {
+  font-size: 2.2rem;
+  margin-top: 2rem;
+}
+
+.successBtn {
+  width: 15rem;
+  padding: 15px;
+  margin-top: 5.5rem;
+  background-color: #4D9B5E; /* 이 색이거나 primary 둘 중 하나로 */
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--white);
+  transition: background-color 0.25s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #4a955b; 
+  }
+}
+

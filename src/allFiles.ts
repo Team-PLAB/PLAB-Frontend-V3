@@ -6,6 +6,7 @@ import Profile from './pages/Auth/Profile'
 import Rental from './pages/Lab/Rental'
 import Management from './pages/Lab/Management'
 import NotFound from './pages/Error/NotFound'
+import Success from './pages/Lab/Rental/Success'
 import {
 	PurposeForm,
 	ScheduleForm,
@@ -24,6 +25,7 @@ export {
 	Rental,
 	Management,
 	NotFound,
+	Success,
 	PurposeForm,
 	ScheduleForm,
 	UserInfoForm,

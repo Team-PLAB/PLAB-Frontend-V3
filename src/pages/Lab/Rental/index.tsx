@@ -157,10 +157,7 @@ const Rental = () => {
 		await requestLabRental.mutateAsync(formData, {
 			onSuccess: () => {
 				setFormData(initialOption)
-				component.Toastify({
-					type: 'success',
-					message: '제출에 성공했습니다.',
-				})
+				navigate('/rental/success')
 			},
 			onError: error => {
 				if (error.message === errorOption[401]) {
