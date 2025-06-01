@@ -52,6 +52,22 @@ const validateRental = (values: rentalType) => {
 		labName: '',	
 	}
 
+	{
+		/* 
+	사용자가 봤을 때 토스트가 너무 많다 생각하면 하나로 처리하기
+	if (
+		!values.rentalDate.trim() ||
+		!values.rentalUser.trim() ||
+		!values.rentalUsers.trim() ||
+		!values.rentalPurpose.trim() ||
+		!values.rentalStartTime.trim() ||
+		!values.labName.trim()
+	) {
+		errors.rentalDate = '아직 기재되지 않은 항목이 있습니다.'
+	}	
+		*/
+	}
+
 	if (!values.rentalDate.trim()) {
 		errors.rentalDate = '대여 희망일을 선택해주세요.'
 	}	
