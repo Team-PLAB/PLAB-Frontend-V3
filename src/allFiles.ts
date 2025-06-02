@@ -4,6 +4,7 @@ import SignIn from './pages/Auth/SignIn'
 import Header from './components/Header/Header'
 import Profile from './pages/Auth/Profile'
 import Rental from './pages/Lab/Rental'
+import Status from './pages/Status'
 import Management from './pages/Lab/Management'
 import {
 	PurposeForm,
@@ -12,6 +13,8 @@ import {
 } from './components/RentalForm'
 import AuthForm from './pages/Auth/components/AuthForm'
 import { Toastify } from './components/Toastify'
+import Tooltip from './components/Tooltip'
+import Board from './components/Board'
 
 export {
 	Landing,
@@ -20,10 +23,13 @@ export {
 	Profile,
 	Header,
 	Rental,
+	Status,
 	Management,
 	PurposeForm,
 	ScheduleForm,
 	UserInfoForm,
 	AuthForm,
 	Toastify,
+	Tooltip,
+	Board,
 }

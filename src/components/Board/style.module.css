@@ -1,0 +1,109 @@
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.fButton {
+    background-color: white;
+    color: black;
+    border: 1px solid #dcdcdc;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.active {
+    background-color: var(--primary);
+    color: white;
+}
+
+.gridContainer {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-auto-rows: 80px;
+    gap: 2px;
+    padding: 10px;
+}
+
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    text-align: center;
+    padding: 15px;
+    white-space: pre-line;
+    font-size: 0.78rem;
+    border: 1px solid var(--gray_light);
+    background-color: var(--gray_light);
+    color: var(--black);
+}
+
+.use {
+    background-color: var(--gray_light);
+    color: var(--black);
+}
+
+.no {
+    background-color: var(--white);
+    color: var(--black);
+}
+
+.empty {
+    background-color: var(--green_300);
+    color: var(--black);
+}
+
+.stairs {
+    background-color: var(--white);
+}
+
+.colSpan2 {
+    grid-column: span 2;
+}
+
+.colSpan3 {
+    grid-column: span 3;
+}
+
+.colSpan10 {
+    grid-column: span 10;
+}
+
+.stateContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    gap: 15px;
+}
+
+.stateItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+
+.colorBox {
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--black);
+    border-radius: 4px;
+}
+
+.colorBox.use {
+    background-color: var(--gray_light);
+}
+
+.colorBox.no {
+    background-color: var(--white);
+}
+
+.colorBox.empty {
+    background-color: var(--green);
+}

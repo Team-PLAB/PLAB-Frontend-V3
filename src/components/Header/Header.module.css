@@ -1,3 +1,33 @@
+/* 다크/라이트 테마 분기 */
+.dark {
+  color: var(--white);
+}
+
+.dark .loginButton,
+.dark .logoutButton,
+.dark .logoutButton2,
+.dark .navItem,
+.dark .menuButton {
+  color: var(--white);
+}
+
+.light {
+  color: var(--black);
+  background-color: var(--white);
+  /* 배경 흰색 */
+}
+
+.light .loginButton,
+.light .logoutButton,
+.light .logoutButton2,
+.light .navItem,
+.light .sidebarlogoSection,
+.light .logoSection,
+.light .title,
+.light .menuButton {
+  color: var(--black);
+}
+
 .headerWrapper {
   position: absolute;
   width: 100%;

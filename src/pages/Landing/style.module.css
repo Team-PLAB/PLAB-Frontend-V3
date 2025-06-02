@@ -60,11 +60,6 @@
   transition: background 0.2s ease-in;
 }
 
-.heroButton:hover {
-  background-color: var(--primary_hover);
-  border: 0;
-}
-
 .noticeContainar {
   border-radius: 30px;
   background-color: var(--white);
