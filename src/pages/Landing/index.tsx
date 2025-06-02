@@ -1,7 +1,7 @@
 import styles from './style.module.css'
 
 import { Link } from 'react-router-dom'
-import { Header } from '~/allFiles'
+import { Header, Footer } from '~/allFiles'
 import { Background, Edit } from '~/assets'
 
 const Landing = () => {
@@ -42,6 +42,7 @@ const Landing = () => {
 						</div>
 					</div>
 				</div>
+				<Footer />
 			</div>
 		</>
 	)

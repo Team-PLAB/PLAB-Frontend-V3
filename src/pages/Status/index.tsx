@@ -1,8 +1,6 @@
 import styles from './style.module.css'
 
-
 import { Board, Header } from '~/allFiles'
-
 
 const Status = () => {
 	return (

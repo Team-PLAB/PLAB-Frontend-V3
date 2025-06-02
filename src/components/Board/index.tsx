@@ -1,7 +1,8 @@
-import styles from "./style.module.css";
-import { useState } from "react";
-import { Tooltip } from "~/allFiles";
-import { useLab } from "~/hooks/useLab"; // Assuming useLab is exported from the provided file
+import styles from "./style.module.css"
+
+import { useState } from "react"
+import { Tooltip } from "~/allFiles"
+import { useLab } from "~/hooks/useLab"
 
 const Board = () => {
     const [floor, setFloor] = useState(1);

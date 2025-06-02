@@ -18,6 +18,7 @@ import AuthForm from './pages/Auth/components/AuthForm'
 import { Toastify } from './components/Toastify'
 import Tooltip from './components/Tooltip'
 import Board from './components/Board'
+import Footer from './components/Footer'
 
 export {
 	Landing,
@@ -38,4 +39,5 @@ export {
 	Toastify,
 	Tooltip,
 	Board,
+	Footer,
 }

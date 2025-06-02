@@ -1,8 +1,8 @@
-import styles from "./Header.module.css";
+import styles from "./Header.module.css"
 
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { IoMenu, IoChevronForwardOutline } from "react-icons/io5";
+import { useState } from "react"
+import { Link } from "react-router-dom"
+import { IoMenu, IoChevronForwardOutline } from "react-icons/io5"
 import { useAuth, useCheckToken } from '~/hooks'
 import { getCookie } from '~/utils'
 import { GBSMLOGO } from '~/assets'
@@ -38,7 +38,7 @@ const Header = ({ theme = "dark" }) => {
                         경북소프트웨어<br />마이스터고등학교
                     </div>
                 </div>
-                <Link to={'/'}  className={styles.sidebarItem}>메인</Link>
+                <Link to={'/'} className={styles.sidebarItem}>메인</Link>
                 {!!!isAdmin && <Link to={'/rental'}  className={styles.sidebarItem}>실습실 대여</Link>}
                 {isAdmin && <Link to={'management'} className={styles.sidebarItem}>승인 페이지</Link>}
                 <Link to={'/profile'} className={styles.sidebarItem}>마이페이지</Link>
@@ -68,8 +68,8 @@ const Header = ({ theme = "dark" }) => {
                     </div>
                     <div className={styles.navBar}>
                         <div className={styles.navMenu}>
-                            <div className={styles.navItem}>메인</div>
-                            <div className={styles.navItem}>실습실 대여</div>
+                            <Link to={'/'} className={styles.navItem}>메인</Link>
+                            <Link to={'/rental'} className={styles.navItem}>실습실 대여</Link>
                             <Link to={'/Status'} className={styles.navItem}>실습실 현황</Link>
                         </div>
                     </div>
@@ -96,12 +96,12 @@ const Header = ({ theme = "dark" }) => {
                     <div>
                         {isAdmin ? (
                             <>
-                                <span style={{ color: "white" }}>ADMIN</span>
+                                <span className={styles.username}>ADMIN</span>
                                 <span className={styles.logoutButton2} style={{ margin: '0 4px' }}>|</span>
                             </>
                         ) : (
                             <>
-                                <span style={{ color: "white" }}>{userStatus?.username}</span>
+                                <span className={styles.username}>{userStatus?.username}</span>
                                 <span className={styles.logoutButton2} style={{ margin: '0 4px' }}>|</span>
                             </>
                         )}

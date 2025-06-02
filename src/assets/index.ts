@@ -1,4 +1,5 @@
 import GBSM_Symbol from './img/gbsm-symbol.png'
+import PLAB_SYMBOL_TRANSPARENT from './img/PLAB_SYMBOL_TRANSPARENT.png'
 import GBSWFULLSCREEN from './img/gbsm-full-symbol.png'
 import GBSMFULLSCREEN from './img/gbsm-full-symbol-green.png'
 import GBSMLOGO from './img/gbsm-symbol-new-solid.png'
@@ -20,6 +21,7 @@ import SuccessCheck from './img/SuccessCheck.png'
 
 export {
 	GBSM_Symbol,
+	PLAB_SYMBOL_TRANSPARENT,
 	GBSWFULLSCREEN,
 	GBSMFULLSCREEN,
 	GBSMLOGO,

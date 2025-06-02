@@ -4,6 +4,8 @@
 }
 
 .dark .loginButton,
+.dark .username,
+.dark .loginButton,
 .dark .logoutButton,
 .dark .logoutButton2,
 .dark .navItem,
@@ -18,6 +20,7 @@
 }
 
 .light .loginButton,
+.light .username,
 .light .logoutButton,
 .light .logoutButton2,
 .light .navItem,
