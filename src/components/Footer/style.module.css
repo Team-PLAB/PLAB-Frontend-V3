@@ -1,0 +1,75 @@
+.footerContainer {
+    width: 100%;
+    background-color: white;
+    border-top: 2px solid var(--gray_light);
+    padding: 2rem 1rem;
+    font-size: 14px;
+    color: var(--black);
+}
+
+.footerContent {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.topRow {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.symbol {
+    width: 30px;
+    height: 30px;
+}
+
+.team {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: 100px;
+    flex-wrap: wrap;
+    font-weight: 500;
+}
+
+.explain {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--black);
+}
+
+.contact {
+    font-size: 11px;
+    color: var(--black);
+}
+
+.bottomRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--black);
+}
+
+.Copyright {
+    font-size: 11.9px;
+}
+
+.icons {
+    display: flex;
+    gap: 1rem;
+    font-size: 19px;
+    color: var(--black);
+}
