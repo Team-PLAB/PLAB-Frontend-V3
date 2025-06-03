@@ -54,7 +54,7 @@
 }
 
 .empty {
-    background-color: var(--green_300);
+    background-color: var(--green);
     color: var(--black);
 }
 

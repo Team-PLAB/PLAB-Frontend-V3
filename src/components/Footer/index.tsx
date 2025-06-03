@@ -12,7 +12,7 @@ const Footer = () => {
                     <div className={styles.logo}>
                         <img className={styles.symbol} src={PLAB_SYMBOL_TRANSPARENT} alt="로고" /> Plab
                         <div className={styles.team}>
-                            <span>팀원</span> <span>|</span>  <span>성홍제</span> <span>최성욱</span> <span>변예현</span> <span>김승환</span> <span>김은찬</span>
+                            <div>팀원</div> <div>|</div>  <div>성홍제</div> <div>최성욱</div> <div>변예현</div> <div>김승환</div> <div>김은찬</div>
                         </div>
                     </div>
                 </div>
@@ -23,7 +23,7 @@ const Footer = () => {
                 </div>
 
                 <div className={styles.contact}>
-                    <span>전화번호: 054-832-2903</span> <span>|</span> <span>주소: 경상북도 의성군 봉양면 봉호로 14</span>
+                    <div>전화번호: 054-832-2903</div> <div>|</div> <div>주소: 경상북도 의성군 봉양면 봉호로 14</div>
                 </div>
 
                 <div className={styles.bottomRow}>
