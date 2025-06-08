@@ -1,13 +1,14 @@
 import * as component from '~/allFiles'
 import styles from './style.module.css'
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useMultiStep, useLab } from '~/hooks'
 import type { rentalType } from '~/types'
 import { StepOne, StepTwo, StepThree } from '~/assets'
 import { validateRental } from '~/utils'
 import { errorOption } from '~/consts'
+import { useBlockNavigation } from '~/hooks'
 
 const initialOption: rentalType = {
 	rentalDate: '',
@@ -36,6 +37,14 @@ const Rental = () => {
 			return newErrors
 		})
 	}
+
+	const shouldBlock = useMemo(() => {
+    return Object.keys(formData).some(
+      (key) => formData[key as keyof rentalType] !== initialOption[key as keyof rentalType]
+    );
+  }, [formData]);
+
+	useBlockNavigation({ isEnabled: true, shouldBlock });
 
 	const {
 		currentTitle,
