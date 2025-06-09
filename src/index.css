@@ -82,7 +82,7 @@ textarea {
   }
 }
 
-span {
+.span {
   font-size: 18px;
   font-weight: 400;
   color: var(--gray_medium);
