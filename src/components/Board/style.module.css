@@ -6,9 +6,9 @@
 }
 
 .fButton {
-    background-color: white;
-    color: black;
-    border: 1px solid #dcdcdc;
+    background-color: var(--white);
+    color: var(--black);
+    border: 1px solid var(--gray_light);
     padding: 10px 20px;
     border-radius: 8px;
     cursor: pointer;
@@ -18,7 +18,7 @@
 
 .active {
     background-color: var(--primary);
-    color: white;
+    color: var(--white);
 }
 
 .gridContainer {
@@ -38,7 +38,7 @@
     padding: 15px;
     white-space: pre-line;
     font-size: 0.78rem;
-    border: 1px solid var(--gray_light);
+    border: 2px solid var(--gray_light);
     background-color: var(--gray_light);
     color: var(--black);
 }
@@ -46,16 +46,19 @@
 .use {
     background-color: var(--gray_light);
     color: var(--black);
+    font-weight: bold;
 }
 
 .no {
     background-color: var(--white);
     color: var(--black);
+    font-weight: bold;
 }
 
 .empty {
-    background-color: var(--green);
-    color: var(--black);
+    background-color: var(--primary);
+    color: var(--white);
+    font-weight: bold;
 }
 
 .stairs {
@@ -98,12 +101,15 @@
 
 .colorBox.use {
     background-color: var(--gray_light);
+    border: 0px;
 }
 
 .colorBox.no {
     background-color: var(--white);
+
 }
 
 .colorBox.empty {
-    background-color: var(--green);
+    background-color: var(--primary);
+    border: 0px;
 }

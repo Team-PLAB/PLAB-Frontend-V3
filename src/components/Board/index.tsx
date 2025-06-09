@@ -88,7 +88,7 @@ const Board = () => {
                         <div className={styles.stairs} />
                         <div {...getBoxProps("NCS 응용 프로그래밍 실습실2")} />
                         <div {...getBoxProps("NCS 게임콘텐츠 제작실습실1")} />
-                        <div className={`${styles.box} ${styles.no}`}>위클래스</div>
+                        <div className={`${styles.box} ${styles.no} ${styles.colSpan2}`}>위클래스</div>
                         <div {...getBoxProps("SW 채움교실")} />
                         <div className={styles.stairs} />
                         <div className={`${styles.box} ${styles.no}`}>화장실</div>
