@@ -34,7 +34,7 @@ const SignUp = () => {
 
 		mutate(signupData, {
 			onSuccess: () => {
-				alert('회원가입에 성공하셨습니다!')
+				alert('회원가입이 완료되었습니다.')
 				navigate('/signin')
 			},
 			onError: error => {
