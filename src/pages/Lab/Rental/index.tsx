@@ -189,6 +189,15 @@ const Rental = () => {
 				</h2>
 				{currentStep}
 				<div className={styles.buttonContainer}>
+					{isFirstStep && (
+						<button
+							onClick={() => navigate('/')}
+							className={styles.rentalButton}
+							id={styles.prev}
+						>
+							대여취소
+						</button>
+					)}
 					{!isFirstStep && (
 						<button
 							onClick={prev}

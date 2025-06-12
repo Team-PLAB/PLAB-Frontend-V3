@@ -1,4 +1,5 @@
 import { useMutation, useQuery } from '@tanstack/react-query'
+import { Toastify } from '~/allFiles'
 import { labPost, labGet, labPatch } from '~/api'
 import type { rentalRequestType, rentalType } from '~/types'
 import { getCookie } from '~/utils'
@@ -41,7 +42,10 @@ export const useLab = () => {
       if (!accessToken) throw new Error('토큰 없음')
       const payload: { labName?: string; approvalRental?: boolean } = {}
       if (labName !== undefined) payload.labName = labName
-      if (approvalRental !== undefined) payload.approvalRental = approvalRental
+      if (approvalRental !== undefined) {
+        payload.approvalRental = approvalRental
+        Toastify({type: 'success', message: '대여 승인이 완료되었습니다.'})
+      }
       
       const response = await labPatch(accessToken, `/lab/${id}`, payload)
       return response.body

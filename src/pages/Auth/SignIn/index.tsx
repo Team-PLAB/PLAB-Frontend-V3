@@ -3,6 +3,7 @@ import styles from './style.module.css'
 
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import { Slide } from 'react-toastify'
 import { useAuth } from '~/hooks'
 import type { signInType } from '~/types'
 import { setCookie, validateSignIn, handleKeyDown } from '~/utils'
@@ -36,8 +37,8 @@ const SignIn = () => {
 			onSuccess: data => {
 				const accessToken = data?.accessToken
 				if (accessToken) setCookie('accessToken', accessToken)
-				alert('로그인에 성공하셨습니다!')
 				navigate('/')
+				componets.Toastify({ type: 'info', message: `${signInData.login}님, 환영합니다.`, transition: Slide })
 			},
 			onError: error => {
 				if(error.message === errorOption[400] || error.message === errorOption[401]) {

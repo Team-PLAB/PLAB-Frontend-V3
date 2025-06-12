@@ -32,6 +32,7 @@ body {
 }
 
 a {
+  color: var(--black);
   text-decoration: none;
 }
 
@@ -88,8 +89,3 @@ textarea {
   color: var(--gray_medium);
 }
 
-@media (max-width: 767px) {
-  .Toastify__toast {
-    display: none;
-  }
-}
