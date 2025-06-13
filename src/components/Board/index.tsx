@@ -16,6 +16,7 @@ const Board = () => {
         },
         {} as Record<string, any>
     );
+
     const getBoxProps = (labName: string) => {
         const rental = rentalMap[labName];
         if (rental) {
@@ -23,6 +24,20 @@ const Board = () => {
             return {
                 className: `${styles.box} ${styles.use}`,
                 children: <Tooltip text={text}>{labName}</Tooltip>,
+            };
+        }
+        return {
+            className: `${styles.box} ${styles.empty}`,
+            children: labName,
+        };
+    };
+    
+    const getBoxPropsWithoutTooltip = (labName: string) => {
+        const rental = rentalMap[labName];
+        if (rental) {
+            return {
+                className: `${styles.box} ${styles.use}`,
+                children: labName, 
             };
         }
         return {
@@ -42,7 +57,7 @@ const Board = () => {
                         <div className={`${styles.box} ${styles.no}`}>회의실</div>
                         <div {...getBoxProps("컴퓨터 교육실")} />
                         <div className={`${styles.box} ${styles.no} ${styles.colSpan2}`}>산학협력부</div>
-                        <div {...getBoxProps("NCS 게임콘텐츠 제작실습실2")} />
+                        <div {...getBoxProps("NCS 게임콘텐츠 제작 실습실2")} />
                         <div className={styles.stairs} />
                         <div className={`${styles.box} ${styles.no}`}>화장실</div>
                         <div className={`${styles.stairs} ${styles.colSpan10}`} />
@@ -87,7 +102,7 @@ const Board = () => {
                         <div className={`${styles.box} ${styles.no}`}>승강기</div>
                         <div className={styles.stairs} />
                         <div {...getBoxProps("NCS 응용 프로그래밍 실습실2")} />
-                        <div {...getBoxProps("NCS 게임콘텐츠 제작실습실1")} />
+                        <div {...getBoxProps("NCS 게임콘텐츠 제작 실습실1")} />
                         <div className={`${styles.box} ${styles.no} ${styles.colSpan2}`}>위클래스</div>
                         <div {...getBoxProps("SW 채움교실")} />
                         <div className={styles.stairs} />
@@ -110,6 +125,30 @@ const Board = () => {
         }
     };
 
+    const renderBoard = () => (
+        <>
+            <div className={styles.boardTitle}>4층</div>
+            <div className={styles.mobileBoardContainer}>
+                <div {...getBoxPropsWithoutTooltip("NCS 응용 프로그래밍 실습실2")} />
+                <div {...getBoxPropsWithoutTooltip("NCS 인공지능모델링 실습실2")} />
+                <div {...getBoxPropsWithoutTooltip("SW 채움교실")} />
+                <div {...getBoxPropsWithoutTooltip("LAB7")} />
+            </div>
+            <div className={styles.boardTitle}>3층</div>
+            <div className={styles.mobileBoardContainer}>
+                <div {...getBoxPropsWithoutTooltip("NCS 인공지능모델링 실습실1")} />
+                <div {...getBoxPropsWithoutTooltip("NCS 게임콘텐츠 제작 실습실1")} />
+                <div {...getBoxPropsWithoutTooltip("NCS 응용 프로그래밍 실습실1")} />
+            </div>
+            <div className={styles.boardTitle}>2층</div>
+            <div className={styles.mobileBoardContainer}>
+                <div {...getBoxPropsWithoutTooltip("컴퓨터 교육실")} />
+                <div {...getBoxPropsWithoutTooltip("NCS 게임콘텐츠 제작 실습실2")} />
+                <div {...getBoxPropsWithoutTooltip("LAB3")} />
+            </div>
+        </>
+    );
+
     return (
         <>
             <div className={styles.buttonContainer}>
@@ -125,6 +164,7 @@ const Board = () => {
             </div>
 
             {renderFloor(floor)}
+            {renderBoard()}
 
             <div className={styles.stateContainer}>
                 <div className={styles.stateItem}>
@@ -137,7 +177,7 @@ const Board = () => {
                 </div>
                 <div className={styles.stateItem}>
                     <div className={`${styles.colorBox} ${styles.no}`} />
-                    <span>신청 불가</span>
+                    <span className={styles.boardText}>신청 불가</span>
                 </div>
             </div>
         </>

@@ -113,3 +113,60 @@
     background-color: var(--primary);
     border: 0px;
 }
+
+.mobileBoardContainer {
+    display: none;
+}
+
+.boardTitle {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .gridContainer {
+        display: none;
+    }
+
+    .buttonContainer {
+        display: none;
+    }
+
+    .box {
+        font-size: 0.75rem;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        padding: 5px;
+        flex-direction: column;
+        line-height: 1.2;
+        word-break: keep-all;
+        box-sizing: border-box;
+    }
+
+    .stairs {
+        display: none;
+    }
+
+    .no {
+        display: none;
+    }
+
+    .mobileBoardContainer {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        height: 80px;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .boardTitle {
+        display: block;
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .boardText {
+        display: none;
+    }
+}

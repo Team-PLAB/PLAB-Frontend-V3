@@ -74,23 +74,23 @@ const Management = () => {
       <Header theme="light" />
       <div className={styles.container}>
         <div className={styles.manageBox}>
-          <h2 className={styles.sectionTitle}>대여 요청 목록</h2>
           <div className={styles.sortControls}>
             <select
               className={styles.select}
-              value={pendingSortOrder}
-              onChange={(e) => setPendingSortOrder(e.target.value as "asc" | "desc")}
+              value={selectedSortOrder}
+              onChange={(e) => setSelectedSortOrder(e.target.value as "asc" | "desc")}
             >
-              <option value="asc">오름차순</option>
-              <option value="desc">내림차순</option>
+              <option value="asc">오래된 순</option>
+              <option value="desc">최신 순</option>
             </select>
             <button
               className={styles.okbutton}
-              onClick={handleInquiry}
+              onClick={handleApprovedInquiry}
             >
               조회
             </button>
           </div>
+          <h2 className={styles.sectionTitle}>대여 요청 목록</h2>
           {pendingRentalsLoading ? (
             <p>보류 중인 요청 로딩 중...</p>
           ) : sortedPendingRentals.length > 0 ? (
@@ -100,7 +100,7 @@ const Management = () => {
                   <tr>
                     <th>대여 실습실</th>
                     <th>대표자</th>
-                    <th>랩실 전체 사용자</th>
+                    <th>실습실 전체 사용자</th>
                     <th>사용 목적</th>
                     <th>대여 날짜</th>
                     <th>대여 시간</th>
@@ -126,7 +126,7 @@ const Management = () => {
                         </select>
                       </td>
                       <td>{rental.rentalUser}</td>
-                      <td><Tooltip text={rental.rentalUsers} maxLength={12} className={styles.user_detail} /></td>
+                      <td><Tooltip text={rental.rentalUsers} maxLength={40} className={styles.user_detail} /></td>
                       <td><Tooltip text={rental.rentalPurpose} maxLength={16} className={styles.user_detail} /></td>
                       <td>{rental.rentalDate}</td>
                       <td>{rental.rentalStartTime}</td>
@@ -151,22 +151,6 @@ const Management = () => {
 
         <div className={styles.manageBox}>
           <h2 className={styles.sectionTitle}>승인 요청 목록</h2>
-          <div className={styles.sortControls}>
-            <select
-              className={styles.select}
-              value={selectedSortOrder}
-              onChange={(e) => setSelectedSortOrder(e.target.value as "asc" | "desc")}
-            >
-              <option value="asc">오름차순</option>
-              <option value="desc">내림차순</option>
-            </select>
-            <button
-              className={styles.okbutton}
-              onClick={handleApprovedInquiry}
-            >
-              조회
-            </button>
-          </div>
           {allLabRentalsLoading ? (
             <p>승인된 대여 목록 로딩 중...</p>
           ) : sortedLabRentals.length > 0 ? (
@@ -176,7 +160,7 @@ const Management = () => {
                   <tr>
                     <th>대여 실습실</th>
                     <th>대표자</th>
-                    <th>랩실 전체 사용자</th>
+                    <th>실습실 전체 사용자</th>
                     <th>사용 목적</th>
                     <th>대여 날짜</th>
                     <th>대여 시간</th>
@@ -185,9 +169,9 @@ const Management = () => {
                 <tbody>
                   {sortedLabRentals.map((rental: rentalRequestType) => (
                     <tr key={rental.id}>
-                      <td><Tooltip text={rental.labName} maxLength={11} className={styles.user_detail} /></td>
+                      <td><Tooltip text={rental.labName} maxLength={15} className={styles.user_detail} /></td>
                       <td>{rental.rentalUser}</td>
-                      <td><Tooltip text={rental.rentalUsers} maxLength={12} className={styles.user_detail} /></td>
+                      <td><Tooltip text={rental.rentalUsers} maxLength={40} className={styles.user_detail} /></td>
                       <td><Tooltip text={rental.rentalPurpose} maxLength={16} className={styles.user_detail} /></td>
                       <td>{rental.rentalDate}</td>
                       <td>{rental.rentalStartTime}</td>

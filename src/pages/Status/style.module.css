@@ -23,3 +23,20 @@
     display: flex;
     justify-content: center;
 }
+
+@media screen and (max-width: 768px) {
+
+
+    .StatusBox {
+        width: 100%;
+        border: 1px solid var(--gray_150);
+        padding: 40px;
+        border-radius: 15px;
+        align-items: center;
+        margin-top: 150px;
+    }
+
+    .title {
+        margin-bottom: 2rem;
+    }
+}

@@ -1,7 +1,7 @@
 import styles from "./Header.module.css"
 
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { IoMenu, IoChevronForwardOutline } from "react-icons/io5"
 import { useAuth, useCheckToken } from '~/hooks'
 import { getCookie } from '~/utils'
@@ -13,6 +13,8 @@ const Header = ({ theme = "dark" }) => {
     const { data: userStatus, isError } = useCheckToken()
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+    const navigate = useNavigate()
+
     const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
     const closeSidebar = () => setIsSidebarOpen(false);
 
@@ -22,6 +24,7 @@ const Header = ({ theme = "dark" }) => {
         signOut.mutate(undefined, {
             onSuccess: () => {
                 alert('로그아웃하셨습니다.')
+                navigate('/');
             },
         })
     }
@@ -39,7 +42,7 @@ const Header = ({ theme = "dark" }) => {
                     </div>
                 </div>
                 <Link to={'/'} className={styles.sidebarItem}>메인</Link>
-                {!!!isAdmin && <Link to={'/rental'}  className={styles.sidebarItem}>실습실 대여</Link>}
+                {!!!isAdmin && <Link to={'/rental'} className={styles.sidebarItem}>실습실 대여</Link>}
                 {isAdmin && <Link to={'management'} className={styles.sidebarItem}>승인 페이지</Link>}
                 <Link to={'/profile'} className={styles.sidebarItem}>마이페이지</Link>
                 <Link to={'/Status'} className={styles.sidebarItem}>실습실 현황</Link>
