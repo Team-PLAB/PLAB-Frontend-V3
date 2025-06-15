@@ -19,6 +19,7 @@ import StepThree from './img/step-three.png'
 import Check from './img/check.png'
 import SuccessCheck from './img/SuccessCheck.png'
 import LeftArrow from './img/left-arrow.png'
+import NotRentLab from './img/not-lab-rent.png'
 
 export {
 	GBSM_Symbol,
@@ -42,4 +43,5 @@ export {
 	Check,
 	SuccessCheck,
 	LeftArrow,
+	NotRentLab,
 }

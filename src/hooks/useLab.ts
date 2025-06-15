@@ -26,6 +26,18 @@ export const useLab = () => {
     },
     enabled: !!accessToken, 
   })
+  
+  const getUserLabRentals = (userId: number | undefined) =>
+    useQuery<rentalRequestType[]>({
+      queryKey: ['userLabRentals', accessToken, userId],
+      queryFn: async () => {
+        if (!accessToken) throw new Error('토큰 없음');
+        if (!userId) throw new Error('유저 ID 없음');
+        const response = await labGet(accessToken, `/lab/user/${userId}`);
+        return response;
+      },
+      enabled: !!accessToken && !!userId,
+    });
 
   const getPendingLabRentals = useQuery({
     queryKey: ['pendingLabRentals', accessToken],
@@ -55,6 +67,7 @@ export const useLab = () => {
 	return {
 		requestLabRental,
 		getAllLabRentals,
+    getUserLabRentals,
 		getPendingLabRentals,
 		patchLabStatus,
 	}
