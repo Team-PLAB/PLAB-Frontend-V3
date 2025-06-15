@@ -1,87 +1,129 @@
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useAuth, useCheckToken } from '~/hooks'
-import { useUserStore } from '~/stores'
-import type { signUpType } from '~/types'
+import * as components from '~/allFiles'
+import styles from './style.module.css'
+
+import { useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { Slide } from 'react-toastify'
+import { useAuth, useCheckToken, useLab } from '~/hooks'
+import { GBSM_Symbol, NotRentLab } from '~/assets'
+import type { rentalRequestType } from '~/types'
 
 const Profile = () => {
-	const { user, setUser, clearUser } = useUserStore()
-	const [userData, setUserData] = useState<signUpType>({
-		username: '',
-		password: '',
-	})
-
 	const navigate = useNavigate()
-	const { updateUserProfile } = useAuth()
-	const { mutate, isPending } = updateUserProfile
-	const { data: userStatus, isLoading, error } = useCheckToken()
+	const { getUserLabRentals } = useLab()
+	const { signOut } = useAuth()
+	const {
+		data: userStatus,
+		isLoading: userLoading,
+		error: userError,
+	} = useCheckToken()
+	const username = userStatus?.username
+	const userId = userStatus?.id
+	const { data: myRentals, isLoading: rentalsLoading } =
+		getUserLabRentals(userId)
 
-	console.log(userStatus)
-
-	useEffect(() => {
-		if (userStatus) {
-			setUser(userStatus)
-			setUserData(prev => ({
-				...prev,
-				username: userStatus.username,
-			}))
-		}
-	}, [userStatus, setUser])
-
-	useEffect(() => {
-		if (error) {
-			clearUser() 
-			alert('토큰이 유효하지 않습니다. 다시 로그인해주세요.')
-			navigate('/login')
-		}
-	}, [error, navigate, clearUser])
-
-	const handleSubmit = () => {
-		if (!user || !userData.username.trim() || !userData.password.trim()) {
-			alert('아이디와 비밀번호를 입력해주세요.')
-			return
-		}
-
-		mutate(
-			{
-				id: user.id,
-				data: userData,
+	const handleLogout = () => {
+		signOut.mutate(undefined, {
+			onSuccess: () => {
+				alert('로그아웃하셨습니다.')
 			},
-			{
-				onSuccess: () => {
-					setUser({ ...user, username: userData.username })
-					alert('정보 수정이 완료되었습니다!')
-					navigate('/profile')
-				},
-				onError: error => {
-					console.error('업데이트 실패:', error)
-					alert('정보 수정에 실패했습니다.')
-				},
-			}
+		})
+	}
+
+	useEffect(() => {
+		if (userError) {
+			navigate('/login')
+			components.Toastify({
+				type: 'info',
+				message: '세션이 만료되었습니다.',
+				transition: Slide,
+			})
+		}
+	}, [userError, navigate])
+
+	if (userLoading || rentalsLoading || !userStatus) {
+		return (
+			<h1 className={styles.sectionTitle}>사용자 및 대여 정보 확인 중...</h1>
 		)
 	}
 
-	if(isLoading) return <h1>사용자 확인 중...</h1>
+	const rentals: rentalRequestType[] = Array.isArray(myRentals) ? myRentals : []
 
 	return (
-		<div>
-			<h1>{user?.username}님의 프로필 수정</h1>
-			<input
-				type="text"
-				placeholder="아이디"
-				value={userData.username}
-				onChange={e => setUserData({ ...userData, username: e.target.value })}
-			/>
-			<input
-				type="password"
-				placeholder="비밀번호"
-				value={userData.password}
-				onChange={e => setUserData({ ...userData, password: e.target.value })}
-			/>
-			<button onClick={handleSubmit} disabled={isPending}>
-				{isPending ? '수정 중...' : '수정하기'}
-			</button>
-		</div>
+		<>
+			<components.Header theme="light" />
+			<div className={styles.container}>
+				<div className={styles.manageBox}>
+					<div className={styles.mainContainer}>
+						<div className={styles.mainTitleContainer}>
+							<img
+								src={GBSM_Symbol}
+								alt="경소마고 로고"
+								className={styles.mainTitleImg}
+							/>
+							<h2 className={styles.mainTitle}>{username}</h2>
+						</div>
+						<div className={styles.userBox}>
+							<button className={styles.logoutBtn} onClick={handleLogout}>
+								로그아웃
+							</button>
+						</div>
+					</div>
+					<hr className={styles.divider} />
+					<h2 className={styles.rentalTitle}>
+						<span>나의</span> 실습실 정보
+					</h2>
+					{rentals.length > 0 ? (
+						<div className={styles.tableContainer}>
+							<table className={styles.table}>
+								<thead>
+									<tr>
+										<th>대여 실습실</th>
+										<th>대여 날짜</th>
+										<th>대여 시간</th>
+										<th>승인 상태</th>
+									</tr>
+								</thead>
+								<tbody>
+									{rentals.map((rental: rentalRequestType) => (
+										<tr key={rental.id}>
+											<td>{rental.labName}</td>
+											<td>{rental.rentalDate}</td>
+											<td>{rental.rentalStartTime}</td>
+											<td>
+												<span
+													className={
+														rental.approvalRental
+															? styles.approval
+															: styles.notApproval
+													}
+												>
+													{rental.approvalRental ? '승인됨' : '승인 안됨'}
+												</span>
+											</td>
+										</tr>
+									))}
+								</tbody>
+							</table>
+						</div>
+					) : (
+						<div className={styles.noneContainer}>
+							<img
+								src={NotRentLab}
+								alt="실습실 빌리세요"
+								className={styles.notRentImg}
+							/>
+							<div className={styles.notTitle}>
+								<p>아직 빌린 실습실이 없어요</p>
+								<Link to="/rental" className={styles.toRental}>
+									실습실 대여하기
+								</Link>
+							</div>
+						</div>
+					)}
+				</div>
+			</div>
+		</>
 	)
 }
 
