@@ -1,17 +1,17 @@
 import { useQuery } from '@tanstack/react-query'
 import { authGet } from '~/api'
-import { getCookie } from '~/utils'
 
 export const useCheckToken = () => {
-	const accessToken = getCookie('accessToken')
-
 	return useQuery({
-		queryKey: ['checkToken', accessToken],
+		queryKey: ['checkToken'],
 		queryFn: async () => {
-			if (!accessToken) throw new Error('토큰 없음')
-			const res = await authGet(accessToken, '/auth/check_token')
-			return res.body.userStatus
+			try {
+				const res = await authGet('/auth/me')
+				return res.data.user
+			} catch {
+				return null
+			}
 		},
-		enabled: !!accessToken,
+		retry: false,
 	})
 }

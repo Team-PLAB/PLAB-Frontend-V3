@@ -3,7 +3,6 @@ import styles from './style.module.css'
 
 import { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Slide } from 'react-toastify'
 import { useAuth, useCheckToken, useLab } from '~/hooks'
 import { GBSM_Symbol, NotRentLab } from '~/assets'
 import type { rentalRequestType } from '~/types'
@@ -13,35 +12,26 @@ const Profile = () => {
 	const { getUserLabRentals } = useLab()
 	const { signOut } = useAuth()
 	const {
-		data: userStatus,
+		data: user,
 		isLoading: userLoading,
 		error: userError,
 	} = useCheckToken()
-	const username = userStatus?.username
-	const userId = userStatus?.id
+
+	const username = user?.username
+	const userId = user?.id
 	const { data: myRentals, isLoading: rentalsLoading } =
 		getUserLabRentals(userId)
 
-	const handleLogout = () => {
-		signOut.mutate(undefined, {
-			onSuccess: () => {
-				alert('로그아웃하셨습니다.')
-			},
-		})
-	}
-
 	useEffect(() => {
 		if (userError) {
-			navigate('/login')
-			components.Toastify({
-				type: 'info',
-				message: '세션이 만료되었습니다.',
-				transition: Slide,
-			})
+			alert('세션이 만료되었습니다. 다시 로그인 해주세요.')
+			navigate('/', { replace: true })
 		}
 	}, [userError, navigate])
 
-	if (userLoading || rentalsLoading || !userStatus) {
+	if (userError) return null
+
+	if (userLoading || rentalsLoading || !user) {
 		return (
 			<h1 className={styles.sectionTitle}>사용자 및 대여 정보 확인 중...</h1>
 		)
@@ -64,7 +54,14 @@ const Profile = () => {
 							<h2 className={styles.mainTitle}>{username}</h2>
 						</div>
 						<div className={styles.userBox}>
-							<button className={styles.logoutBtn} onClick={handleLogout}>
+							<button className={styles.logoutBtn} onClick={() => {
+								signOut.mutate(undefined, {
+									onSuccess: () => {
+										alert('로그아웃하셨습니다.')
+										navigate('/', { replace: true })
+									},
+								})
+							}}>
 								로그아웃
 							</button>
 						</div>

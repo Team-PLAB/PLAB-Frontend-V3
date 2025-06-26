@@ -19,6 +19,7 @@ const Board = () => {
 
     const getBoxProps = (labName: string) => {
         const rental = rentalMap[labName];
+        
         if (rental) {
             const text = `대여자: ${rental.rentalUsers}\n 목적: ${rental.rentalPurpose}\n시간: ${rental.rentalStartTime}`;
             return {
