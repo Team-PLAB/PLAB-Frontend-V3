@@ -16,7 +16,7 @@ interface ToastProps {
 
 const defaultToastOptions: ToastOptions = {
 	position: 'top-right',
-	autoClose: 2000,
+	autoClose: 1500,
 	pauseOnHover: false,
 	pauseOnFocusLoss: false,
 	closeOnClick: false,

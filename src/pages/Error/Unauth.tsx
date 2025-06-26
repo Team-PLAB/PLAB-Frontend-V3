@@ -18,7 +18,7 @@ const Unauth = () => {
 
         setTimeout(() => {
             navitgate(-1)
-        }, 2500)
+        }, 1500)
     }, [])
     if (!isAdmin) {
         return (

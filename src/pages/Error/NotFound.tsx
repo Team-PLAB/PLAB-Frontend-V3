@@ -14,7 +14,7 @@ const NotFound = () => {
 
     setTimeout(() => {
       navitgate(-1)
-    }, 2500)
+    }, 1500)
   }, [])
 
   return (
