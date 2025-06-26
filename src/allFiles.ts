@@ -7,6 +7,8 @@ import Rental from './pages/Lab/Rental'
 import Status from './pages/Status'
 import Management from './pages/Lab/Management'
 import NotFound from './pages/Error/NotFound'
+import Unauth from './pages/Error/Unauth'
+import NotLogin from './pages/Error/NotLogin'
 import Success from './pages/Lab/Rental/Success'
 import {
 	PurposeForm,
@@ -30,6 +32,8 @@ export {
 	Status,
 	Management,
 	NotFound,
+	Unauth,
+	NotLogin,
 	Success,
 	PurposeForm,
 	ScheduleForm,

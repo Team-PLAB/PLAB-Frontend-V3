@@ -8,7 +8,8 @@ import type { rentalType } from '~/types'
 import { StepOne, StepTwo, StepThree } from '~/assets'
 import { validateRental } from '~/utils'
 import { errorOption } from '~/consts'
-import { useBlockNavigation } from '~/hooks'
+import { useBlockNavigation, useCheckToken } from '~/hooks'
+import { NotLogin } from '~/allFiles'
 
 const initialOption: rentalType = {
 	rentalDate: '',
@@ -21,6 +22,8 @@ const initialOption: rentalType = {
 
 const Rental = () => {
 	const { requestLabRental } = useLab()
+	const { data: user } = useCheckToken()
+	const isUser = user?.role === 'user'
 	const [formData, setFormData] = useState<rentalType>(initialOption)
 	const [errorFields, setErrorFields] = useState<Partial<rentalType>>({})
 	const [isModalOpen, setIsModalOpen] = useState(false)
@@ -39,10 +42,10 @@ const Rental = () => {
 	}
 
 	const shouldBlock = useMemo(() => {
-    return Object.keys(formData).some(
-      (key) => formData[key as keyof rentalType] !== initialOption[key as keyof rentalType]
-    );
-  }, [formData]);
+		return Object.keys(formData).some(
+			(key) => formData[key as keyof rentalType] !== initialOption[key as keyof rentalType]
+		);
+	}, [formData]);
 
 	useBlockNavigation({ isEnabled: true, shouldBlock });
 
@@ -177,64 +180,70 @@ const Rental = () => {
 		})
 	}
 
-	return (
-		<div className={styles.topContainer}>
-			<header>
-				<h4 className={styles.headerTitle}>실습실 대여</h4>
-				<img src={currentImg} alt="순서 이미지" className={styles.stepImg} />
-			</header>
-			<main className={styles.mainContainer}>
-				<h2 className={styles.currentTitle}>
-					<pre>{currentTitle}</pre>
-				</h2>
-				{currentStep}
-				<div className={styles.buttonContainer}>
-					{isFirstStep && (
-						<button
-							onClick={() => navigate('/')}
-							className={styles.rentalButton}
-							id={styles.prev}
-						>
-							대여취소
-						</button>
-					)}
-					{!isFirstStep && (
-						<button
-							onClick={prev}
-							className={styles.rentalButton}
-							id={styles.prev}
-						>
-							이전
-						</button>
-					)}
-					{!isLastStep && (
-						<button
-							onClick={handleNext}
-							className={styles.rentalButton}
-							id={styles.next}
-						>
-							다음
-						</button>
-					)}
-					{isLastStep && (
-						<button
-							onClick={handleSubmit}
-							disabled={requestLabRental.isPending}
-							className={styles.rentalButton}
-							id={styles.submit}
-						>
-							{requestLabRental.isPending ? '제출 중..' : '제출'}
-						</button>
-					)}
-				</div>
-			</main>
-			<component.RentalModal
-				isOpen={isModalOpen}
-				onClose={() => setIsModalOpen(false)}
-				actionFunction={handleModalConfirm}
-			/>
-		</div>
-	)
+	if (isUser) {
+		return (
+			<div className={styles.topContainer}>
+				<header>
+					<h4 className={styles.headerTitle}>실습실 대여</h4>
+					<img src={currentImg} alt="순서 이미지" className={styles.stepImg} />
+				</header>
+				<main className={styles.mainContainer}>
+					<h2 className={styles.currentTitle}>
+						<pre>{currentTitle}</pre>
+					</h2>
+					{currentStep}
+					<div className={styles.buttonContainer}>
+						{isFirstStep && (
+							<button
+								onClick={() => navigate('/')}
+								className={styles.rentalButton}
+								id={styles.prev}
+							>
+								대여취소
+							</button>
+						)}
+						{!isFirstStep && (
+							<button
+								onClick={prev}
+								className={styles.rentalButton}
+								id={styles.prev}
+							>
+								이전
+							</button>
+						)}
+						{!isLastStep && (
+							<button
+								onClick={handleNext}
+								className={styles.rentalButton}
+								id={styles.next}
+							>
+								다음
+							</button>
+						)}
+						{isLastStep && (
+							<button
+								onClick={handleSubmit}
+								disabled={requestLabRental.isPending}
+								className={styles.rentalButton}
+								id={styles.submit}
+							>
+								{requestLabRental.isPending ? '제출 중..' : '제출'}
+							</button>
+						)}
+					</div>
+				</main>
+				<component.RentalModal
+					isOpen={isModalOpen}
+					onClose={() => setIsModalOpen(false)}
+					actionFunction={handleModalConfirm}
+				/>
+			</div>
+		)
+	}
+
+	if (!isUser) {
+		return <NotLogin />
+	}
 }
 
 export default Rental

@@ -1,4 +1,4 @@
-import styles from './style.module.css'
+import styles from './RentalModal.module.css'
 
 import { useState, useEffect } from 'react'
 import { IoIosWarning } from 'react-icons/io'
