@@ -19,3 +19,4 @@ export type rentalRequestType = {
 	approvalRental: boolean
 	labName: string
 }
+

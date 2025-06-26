@@ -12,9 +12,10 @@ const Unauth = () => {
     const navitgate = useNavigate()
     const { data: user } = useCheckToken()
     const isAdmin = user?.role === 'admin'
+    console.log('Unauth: ', isAdmin)
 
     useEffect(() => {
-        Toastify({ type: 'error', message: '401 - 이 페이지는 권한이 있어야합니다.', position: 'top-center', transition: Slide })
+        Toastify({ type: 'error', message: '403 - 이 페이지는 권한이 있어야합니다.', position: 'top-center', transition: Slide })
 
         setTimeout(() => {
             navitgate(-1)

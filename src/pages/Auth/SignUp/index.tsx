@@ -92,7 +92,10 @@ const SignUp = () => {
 					</Link>
 				</div>
 			</div>
-			<div className={styles.imgContainer} />
+			<div className={styles.imgContainer}>
+				<h1>Kyungbuk Software</h1>
+				<span>Meister High School</span>
+			</div>
 		</div>
 	)
 }

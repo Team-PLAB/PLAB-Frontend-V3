@@ -1,57 +1,56 @@
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { Toastify } from '~/allFiles'
-import { labPost, labGet, labPatch } from '~/api'
+import { labPost, labGet, labPatch, authGet } from '~/api'
 import type { rentalRequestType, rentalType } from '~/types'
-import { getCookie } from '~/utils'
 
 export const useLab = () => {
-  const accessToken = getCookie('accessToken')
-
-	const requestLabRental = useMutation({
+	const requestLabRental = useMutation({  
 		mutationFn: async (data: rentalType) => {
-			const response = await labPost(accessToken, '/lab', data)
+			const response = await labPost('/lab', data)
 			return response
 		},
 	})
 
   const getAllLabRentals = useQuery({
-    queryKey: ['allLabRentals', accessToken],
+    queryKey: ['allLabRentals'],
     queryFn: async () => {
-      if (!accessToken) throw new Error('토큰 없음')
-      const response = await labGet(accessToken, '/lab')
-      const filteredData = response.body.filter(
-				(lab: rentalRequestType) => lab.approvalRental === true
-			)
-      return filteredData
+      const response = await labGet('/lab/list')
+
+      return response.data.labs
     },
-    enabled: !!accessToken, 
+  })
+
+  const getApprovalRentals = useQuery({
+    queryKey: ['approvalRentals'],
+    queryFn: async () => {
+      const response = await labGet('/lab/approval')
+
+      return response.data.labs
+    },
   })
   
   const getUserLabRentals = (userId: number | undefined) =>
     useQuery<rentalRequestType[]>({
-      queryKey: ['userLabRentals', accessToken, userId],
+      queryKey: ['userLabRentals', userId],
       queryFn: async () => {
-        if (!accessToken) throw new Error('토큰 없음');
-        if (!userId) throw new Error('유저 ID 없음');
-        const response = await labGet(accessToken, `/lab/user/${userId}`);
-        return response;
+        const response = await authGet('/auth/me')
+
+        return response.data.user.lab
       },
-      enabled: !!accessToken && !!userId,
+      enabled: !!userId,
     });
 
   const getPendingLabRentals = useQuery({
-    queryKey: ['pendingLabRentals', accessToken],
+    queryKey: ['pendingLabRentals'],
     queryFn: async () => {
-      if (!accessToken) throw new Error('토큰 없음')
-      const response = await labGet(accessToken, '/lab/approved')
-      return response
+      const response = await labGet('/lab/approved')
+
+      return response.data.labs
     },
-    enabled: !!accessToken, 
   })
 
   const patchLabStatus = useMutation({
     mutationFn: async ({ id, labName, approvalRental }: { id: number; labName?: string; approvalRental?: boolean }) => {
-      if (!accessToken) throw new Error('토큰 없음')
       const payload: { labName?: string; approvalRental?: boolean } = {}
       if (labName !== undefined) payload.labName = labName
       if (approvalRental !== undefined) {
@@ -59,7 +58,7 @@ export const useLab = () => {
         Toastify({type: 'success', message: '대여 승인이 완료되었습니다.'})
       }
       
-      const response = await labPatch(accessToken, `/lab/${id}`, payload)
+      const response = await labPatch(`/lab/${id}`, payload)
       return response.body
     },
 })
@@ -67,6 +66,7 @@ export const useLab = () => {
 	return {
 		requestLabRental,
 		getAllLabRentals,
+    getApprovalRentals,
     getUserLabRentals,
 		getPendingLabRentals,
 		patchLabStatus,

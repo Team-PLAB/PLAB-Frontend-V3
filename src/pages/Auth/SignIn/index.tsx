@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { Slide } from 'react-toastify'
 import { useAuth } from '~/hooks'
 import type { signInType } from '~/types'
-import { setCookie, validateSignIn, handleKeyDown } from '~/utils'
+import { validateSignIn, handleKeyDown } from '~/utils'
 import { GBSMFULLSCREEN } from '~/assets'
 import { errorOption } from '~/consts'
 
@@ -34,9 +34,7 @@ const SignIn = () => {
 		if (hasErrors || isPending) return
 
 		mutate(signInData, {
-			onSuccess: data => {
-				const accessToken = data?.accessToken
-				if (accessToken) setCookie('accessToken', accessToken)
+			onSuccess: () => {
 				navigate('/')
 				componets.Toastify({ type: 'info', message: `${signInData.login}님, 환영합니다.`, transition: Slide })
 			},
@@ -95,7 +93,10 @@ const SignIn = () => {
 					</Link>
 				</div>
 			</div>
-			<div className={styles.imgContainer} />
+			<div className={styles.imgContainer}>
+				<h1>Kyungbuk Software</h1>
+				<span>Meister High School</span>
+			</div>
 		</div>
 	)
 }

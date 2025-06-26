@@ -1,4 +1,4 @@
-import styles from './RentalModal.module.css'
+import styles from './style.module.css'
 
 import { useState, useEffect } from 'react'
 import { IoIosWarning } from 'react-icons/io'
@@ -9,7 +9,7 @@ interface ModalProps {
 	actionFunction: () => Promise<void>
 }
 
-const RentalModal = ({ isOpen, onClose, actionFunction }: ModalProps) => {
+export const RentalModal = ({ isOpen, onClose, actionFunction }: ModalProps) => {
 	const [isVisible, setIsVisible] = useState(false)
 	const [isChecked, setIsChecked] = useState(false)
 
@@ -94,5 +94,3 @@ const RentalModal = ({ isOpen, onClose, actionFunction }: ModalProps) => {
 		</div>
 	)
 }
-
-export default RentalModal

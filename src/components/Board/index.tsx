@@ -2,12 +2,13 @@ import styles from "./style.module.css"
 
 import { useState } from "react"
 import { Tooltip } from "~/allFiles"
-import { useLab } from "~/hooks/useLab"
+import { useLab } from "~/hooks"
 
 const Board = () => {
     const [floor, setFloor] = useState(1);
     const { getAllLabRentals } = useLab();
     const rentalRequests = getAllLabRentals.data || [];
+    console.log(rentalRequests)
 
     const rentalMap = rentalRequests.reduce(
         (map: Record<string, any>, request: any) => {

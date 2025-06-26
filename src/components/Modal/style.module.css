@@ -51,6 +51,30 @@
   }
 }
 
+.modalLogoutWrapper {
+  background-color: var(--white);
+  width: 400px;
+  height: 220px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalLogoContainer {
+  height: 3.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 6.5rem;
+  margin-bottom: 1rem;
+
+  & img {
+    width: 2.8rem;
+  }
+}
+
 .fadeIn {
   animation: fadeIn 0.5s forwards;
 }
