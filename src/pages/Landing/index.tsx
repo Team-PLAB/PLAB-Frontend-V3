@@ -1,10 +1,23 @@
 import styles from './style.module.css'
 
+import { useEffect } from 'react'
+import { useCheckToken } from '~/hooks'
 import { Link } from 'react-router-dom'
 import { Header, Footer } from '~/allFiles'
 import { Background, Edit } from '~/assets'
 
 const Landing = () => {
+	const {
+		error: userError,
+	} = useCheckToken()
+
+	useEffect(() => {
+		if (userError) {
+			alert('세션이 만료되었습니다. 다시 로그인 해주세요.')
+		}
+	}, [userError])
+
+	if (userError) return null
 	return (
 		<>
 			<Header />
