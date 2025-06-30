@@ -19,8 +19,7 @@ const Profile = () => {
   } = useCheckToken()
 
   const username = user?.username
-  const userId = user?.id
-  const { data: myRentals, isLoading: rentalsLoading } = getUserLabRentals(userId)
+  const { data: myRentals, isLoading: rentalsLoading } = getUserLabRentals(user)
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false)
 
   const openLogoutModal = () => setIsLogoutModalOpen(true)
@@ -29,7 +28,7 @@ const Profile = () => {
   const handleLogoutConfirm = () => {
     signOut.mutate(undefined, {
       onSuccess: () => {
-				        navigate('/', { replace: true })
+        navigate('/', { replace: true })
         components.Toastify({
           type: 'info',
           message: '로그아웃 되었습니다.',
@@ -42,7 +41,7 @@ const Profile = () => {
   }
 
   useEffect(() => {
-    if (userError) {
+    if (userError || !user) {
       alert('세션이 만료되었습니다. 다시 로그인 해주세요.')
       navigate('/', { replace: true })
     }
@@ -50,7 +49,7 @@ const Profile = () => {
 
   if (userError) return null
 
-  if (userLoading || rentalsLoading || !user) {
+  if (userLoading || rentalsLoading) {
     return <h1 className={styles.sectionTitle}>사용자 및 대여 정보 확인 중...</h1>
   }
 

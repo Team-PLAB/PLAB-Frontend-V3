@@ -94,7 +94,7 @@ const SignIn = () => {
 				</div>
 			</div>
 			<div className={styles.imgContainer}>
-				<h1>Kyungbuk Software</h1>
+				<h1>Gyeongbuk Software</h1>
 				<span>Meister High School</span>
 			</div>
 		</div>
