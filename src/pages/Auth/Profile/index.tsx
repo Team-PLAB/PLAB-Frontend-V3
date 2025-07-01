@@ -2,6 +2,7 @@ import * as components from '~/allFiles'
 import styles from './style.module.css'
 
 import { useEffect, useState } from 'react'
+import { NotLogin } from '~/allFiles'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth, useCheckToken, useLab } from '~/hooks'
 import { GBSM_Symbol, NotRentLab } from '~/assets'
@@ -41,18 +42,21 @@ const Profile = () => {
   }
 
   useEffect(() => {
-    if (userError || user.role !== 'user') {
+    if (!userLoading && (!user || userError || user?.role !== 'user')) {
       alert('세션이 만료되었습니다. 다시 로그인 해주세요.')
       navigate('/', { replace: true })
     }
-  }, [userError, navigate])
+  }, [userLoading, user, userError, navigate])
 
-  if (userError || user.role !== 'user') return null
-
-  if (userLoading || rentalsLoading) {
-    return <h1 className={styles.sectionTitle}>사용자 및 대여 정보 확인 중...</h1>
+  if (!user && !userLoading) {
+    navigate('/', { replace: true })
+    return null
   }
 
+  if (userLoading || rentalsLoading) return null
+
+  // 더 이상 NotLogin은 필요 없음
+  if (!user || userError || user?.role !== 'user') return <NotLogin />
   const rentals: rentalRequestType[] = Array.isArray(myRentals) ? myRentals : []
 
   return (
