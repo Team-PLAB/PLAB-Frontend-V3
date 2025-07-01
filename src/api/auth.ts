@@ -21,3 +21,17 @@ export const logout = async (): Promise<any> => {
 	})
 	return response.data
 }
+
+export const verifyRefreshToken = async (): Promise<any> => {
+	const response = await CommonAPI.post('/auth/token/refresh', {}, {
+		withCredentials: true,
+	})
+	return response.data
+}
+
+export const refreshTokenStatus = async (): Promise<any> => {
+	const response = await CommonAPI.post('/auth/token-status', {}, {
+		withCredentials: true,
+	})
+	return response.data
+}

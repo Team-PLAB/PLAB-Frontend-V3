@@ -41,13 +41,13 @@ const Profile = () => {
   }
 
   useEffect(() => {
-    if (userError || !user) {
+    if (userError || user.role !== 'user') {
       alert('세션이 만료되었습니다. 다시 로그인 해주세요.')
       navigate('/', { replace: true })
     }
   }, [userError, navigate])
 
-  if (userError) return null
+  if (userError || user.role !== 'user') return null
 
   if (userLoading || rentalsLoading) {
     return <h1 className={styles.sectionTitle}>사용자 및 대여 정보 확인 중...</h1>

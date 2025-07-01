@@ -25,7 +25,6 @@ const Management = () => {
 					getPendingLabRentals.refetch()
 					getApprovalRentals.refetch()
 				},
-				onError: (err) => console.log(err),
 			}
 		)
 	}
@@ -36,7 +35,6 @@ const Management = () => {
 			{ id, labName },
 			{
 				onSuccess: () => getPendingLabRentals.refetch(),
-				onError: (err) => console.log(err),
 			}
 		)
 	}
