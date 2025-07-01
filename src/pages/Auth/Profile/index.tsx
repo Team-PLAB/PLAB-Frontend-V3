@@ -54,8 +54,6 @@ const Profile = () => {
   }
 
   if (userLoading || rentalsLoading) return null
-
-  // 더 이상 NotLogin은 필요 없음
   if (!user || userError || user?.role !== 'user') return <NotLogin />
   const rentals: rentalRequestType[] = Array.isArray(myRentals) ? myRentals : []
 
