@@ -21,6 +21,7 @@ import { Toastify } from './components/Toastify'
 import Tooltip from './components/Tooltip'
 import Board from './components/Board'
 import Footer from './components/Footer'
+import { Loading } from './components/Loading'
 
 export {
 	Landing,
@@ -45,4 +46,5 @@ export {
 	Tooltip,
 	Board,
 	Footer,
+	Loading,
 }

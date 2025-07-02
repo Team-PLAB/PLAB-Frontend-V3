@@ -53,7 +53,7 @@ const Profile = () => {
     return null
   }
 
-  if (userLoading || rentalsLoading) return null
+  if (userLoading || rentalsLoading) return <components.Loading />
   if (!user || userError || user?.role !== 'user') return <NotLogin />
   const rentals: rentalRequestType[] = Array.isArray(myRentals) ? myRentals : []
 
@@ -61,6 +61,7 @@ const Profile = () => {
     <>
       <components.Header theme="light" />
       <div className={styles.container}>
+        <components.Loading />
         <div className={styles.manageBox}>
           <div className={styles.mainContainer}>
             <div className={styles.mainTitleContainer}>
