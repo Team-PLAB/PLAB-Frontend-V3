@@ -9,7 +9,6 @@ import Management from './pages/Lab/Management'
 import NotFound from './pages/Error/NotFound'
 import Unauth from './pages/Error/Unauth'
 import NotLogin from './pages/Error/NotLogin'
-import Success from './pages/Lab/Rental/Success'
 import {
 	PurposeForm,
 	ScheduleForm,
@@ -35,7 +34,6 @@ export {
 	NotFound,
 	Unauth,
 	NotLogin,
-	Success,
 	PurposeForm,
 	ScheduleForm,
 	UserInfoForm,

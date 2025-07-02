@@ -2,7 +2,6 @@ import * as components from '~/allFiles'
 import styles from './style.module.css'
 
 import { useEffect, useState } from 'react'
-import { NotLogin } from '~/allFiles'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth, useCheckToken, useLab } from '~/hooks'
 import { GBSM_Symbol, NotRentLab } from '~/assets'
@@ -19,9 +18,14 @@ const Profile = () => {
     error: userError,
   } = useCheckToken()
 
-  const username = user?.username
-  const { data: myRentals, isLoading: rentalsLoading } = getUserLabRentals(user)
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false)
+
+  const isUser = !!user && user.role === 'user'
+  const userId = user && isUser ? user.id : undefined
+
+  const {
+    data: myRentals
+  } = getUserLabRentals(userId)
 
   const openLogoutModal = () => setIsLogoutModalOpen(true)
   const closeLogoutModal = () => setIsLogoutModalOpen(false)
@@ -36,32 +40,24 @@ const Profile = () => {
           transition: Slide,
         })
         closeLogoutModal()
-        navigate('/', { replace: true })
       },
     })
   }
 
   useEffect(() => {
-    if (!userLoading && (!user || userError || user?.role !== 'user')) {
+    if (!userLoading && (!user || userError || !isUser)) {
       alert('세션이 만료되었습니다. 다시 로그인 해주세요.')
       navigate('/', { replace: true })
     }
-  }, [userLoading, user, userError, navigate])
+  }, [userLoading, user, userError, navigate, isUser])
 
-  if (!user && !userLoading) {
-    navigate('/', { replace: true })
-    return null
-  }
-
-  if (userLoading || rentalsLoading) return <components.Loading />
-  if (!user || userError || user?.role !== 'user') return <NotLogin />
+  const username = user?.username ?? ''
   const rentals: rentalRequestType[] = Array.isArray(myRentals) ? myRentals : []
 
   return (
     <>
       <components.Header theme="light" />
       <div className={styles.container}>
-        <components.Loading />
         <div className={styles.manageBox}>
           <div className={styles.mainContainer}>
             <div className={styles.mainTitleContainer}>

@@ -1,4 +1,4 @@
-import * as component from '~/allFiles'
+import * as components from '~/allFiles'
 import styles from './style.module.css'
 
 import { useMemo, useState } from 'react'
@@ -64,7 +64,7 @@ const Rental = () => {
 			img: StepOne,
 			element: (
 				<div className={styles.stepOneContainer}>
-					<component.UserInfoForm
+					<components.UserInfoForm
 						{...formData}
 						updateFields={updateFields}
 						errorFields={errorFields}
@@ -85,7 +85,7 @@ const Rental = () => {
 			img: StepTwo,
 			element: (
 				<div className={styles.stepTwoContainer}>
-					<component.PurposeForm
+					<components.PurposeForm
 						{...formData}
 						updateFields={updateFields}
 						errorFields={errorFields}
@@ -98,7 +98,7 @@ const Rental = () => {
 			img: StepThree,
 			element: (
 				<div className={styles.stepThreeContainer}>
-					<component.ScheduleForm
+					<components.ScheduleForm
 						{...formData}
 						updateFields={updateFields}
 						errorFields={errorFields}
@@ -130,7 +130,7 @@ const Rental = () => {
 
 			relevantFields.forEach(field => {
 				if (errors[field]) {
-					component.Toastify({
+					components.Toastify({
 						type: 'error',
 						message: errors[field],
 					})
@@ -152,7 +152,7 @@ const Rental = () => {
 
 			Object.values(errors).forEach(error => {
 				if (error) {
-					component.Toastify({
+					components.Toastify({
 						type: 'error',
 						message: error,
 					})
@@ -169,7 +169,11 @@ const Rental = () => {
 		await requestLabRental.mutateAsync(formData, {
 			onSuccess: () => {
 				setFormData(initialOption)
-				navigate('/rental/success')
+				navigate('/', { replace: true })
+				components.Toastify({
+					type: 'info',
+					message: '대여요청이 완료되었습니다',
+				})
 			},
 			onError: error => {
 				if (error.message === errorOption[401]) {
@@ -232,7 +236,7 @@ const Rental = () => {
 						)}
 					</div>
 				</main>
-				<component.RentalModal
+				<components.RentalModal
 					isOpen={isModalOpen}
 					onClose={() => setIsModalOpen(false)}
 					actionFunction={handleModalConfirm}

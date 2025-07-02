@@ -30,7 +30,6 @@ function App() {
 				<Route path='/rental' element={<route.Rental />} />
 				<Route path='/Status' element={<route.Status />} />
 				<Route path='/management' element={<route.Management />} />
-				<Route path='/rental/success' element={<route.Success />} />
 				<Route path='*' element={<route.NotFound />} />
 			</Routes>
 		</Router>
