@@ -14,7 +14,7 @@ export const useLab = () => {
   const getAllLabRentals = useQuery({
     queryKey: ['allLabRentals'],
     queryFn: async () => {
-      const response = await labGet('/lab/list')
+      const response = await labGet('/lab/approval')
 
       return response.data.labs
     },
@@ -23,7 +23,7 @@ export const useLab = () => {
   const getApprovalRentals = useQuery({
     queryKey: ['approvalRentals'],
     queryFn: async () => {
-      const response = await labGet('/lab/approval')
+      const response = await labGet('/lab')
 
       return response.data.labs
     },

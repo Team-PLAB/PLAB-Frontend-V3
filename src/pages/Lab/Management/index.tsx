@@ -11,7 +11,6 @@ import { useCheckToken } from '~/hooks'
 const Management = () => {
 	const navigate = useNavigate()
 	const { data: user, isLoading: userLoading } = useCheckToken()
-	const isAdmin = user?.role === 'admin'
 	const { error: userError } = useCheckToken()
 	const { getApprovalRentals, getPendingLabRentals, patchLabStatus } = useLab()
 	const { data: ApprovalRentals, isLoading: ApprovalRentalsLoading } = getApprovalRentals
